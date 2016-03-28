@@ -14,9 +14,9 @@ def who_is():
     
     data = request.headers.get('User-agent').split()
     soft = " ".join(data[1:6])
-
-
-    return jsonify(ipaddress = ip, language = "lang", software = soft)
+    lang = request.accept_languages[0][0]
+    
+    return jsonify(ipaddress = ip, language = lang, software = soft)
 
 
 ### Runs server
