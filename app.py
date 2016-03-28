@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from socket import gethostname, gethostbyname 
 
 app = Flask(__name__)
@@ -11,8 +11,12 @@ def index():
 def who_is():
     
     ip = gethostbyname(gethostname())    
+    
+    data = request.headers.get('User-agent').split()
+    soft = " ".join(data[1:6])
 
-    return jsonify(ipaddress = ip, language = "def sl-SI", software = "def Windows NT 10.0; Win64; x64")
+
+    return jsonify(ipaddress = ip, language = "lang", software = soft)
 
 
 ### Runs server
